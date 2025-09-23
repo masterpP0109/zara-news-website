@@ -4,10 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import { useBlogs } from '@/hooks/useBlogs';
 import { WideSectionHeader } from '@/components/ui/SectionHeader';
-import { ArticleCard } from '@/components/ui/ArticleCard';
 
 const WorldTopNews = () => {
-  const { blogs: articles } = useBlogs({
+  const { blogs: articles, loading, error } = useBlogs({
     endpoint: '/api/blogs/category/World,Tech,Politics,Modern',
     published: true,
     limit: 10
@@ -16,6 +15,9 @@ const WorldTopNews = () => {
 
 
   const featuredArticle = articles.length > 0 ? articles[0] : null;
+
+  if (loading) return <div>Loading world news...</div>;
+  if (error) return <div>Error loading news: {error}</div>;
 
   return (
     <div>
@@ -52,7 +54,10 @@ const WorldTopNews = () => {
                 </span>
               </div>
 
-              <button className="bg-transparent text-blue-900 border-2 font-bold px-6 py-2 rounded hover:bg-rose-700 transition-colors w-fit">
+              <button
+                className="bg-transparent text-blue-900 border-2 border-blue-900 font-bold px-6 py-2 rounded hover:bg-blue-900 hover:text-white transition-colors w-fit"
+                aria-label={`Read more about ${featuredArticle.title}`}
+              >
                 Read More
               </button>
             </>
@@ -66,7 +71,7 @@ const WorldTopNews = () => {
         <div className="flex gap-2 " >
            { articles.length > 1 ? articles.slice(1, 4).map((article, index) => (
               <div
-              key={index}
+              key={article._id || `article-${index}`}
               className="flex gap-[1px] items-center "
               >
                <div>

@@ -4,10 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import { useBlogs } from '@/hooks/useBlogs';
 import { WideSectionHeader } from '@/components/ui/SectionHeader';
-import { ArticleCard } from '@/components/ui/ArticleCard';
 
 const Sports = () => {
-  const { blogs: articles } = useBlogs({
+  const { blogs: articles, loading, error } = useBlogs({
     endpoint: '/api/blogs/category/Sports,Swimming,Boxing,Basketball,Football',
     published: true,
     limit: 5
@@ -16,6 +15,9 @@ const Sports = () => {
 
 
   const sportsArticle = articles.length > 0 ? articles[0] : null;
+
+  if (loading) return <div>Loading sports news...</div>;
+  if (error) return <div>Error loading news: {error}</div>;
 
   return (
     <div>
@@ -66,9 +68,9 @@ const Sports = () => {
           </div>
 
         <div className="grid grid-cols-2 gap-2" >
-           { articles.length > 1 ? articles.slice(1, 5).map((article, index) => (
+           { articles.length > 1 ? articles.slice(1, 5).map((article) => (
               <div
-              key={index}
+              key={article._id || `article-${article.title}`}
               className="flex gap-[5px] items-center"
               >
                   <div className="w-20 h-15 relative inset-0  ">

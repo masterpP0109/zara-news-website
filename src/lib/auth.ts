@@ -1,8 +1,5 @@
-import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import { prisma } from './prisma';
 import bcrypt from 'bcryptjs';
 import { connectToDatabase } from '@/lib/mongodb';
 import User from '@/app/models/user';
@@ -13,7 +10,9 @@ import type { Session, User as NextAuthUser } from 'next-auth';
 const requiredEnvVars = [
   'MONGODB_URI',
   'NEXTAUTH_SECRET',
-  'NEXTAUTH_URL'
+  'NEXTAUTH_URL',
+  'GOOGLE_CLIENT_ID',
+  'GOOGLE_CLIENT_SECRET'
 ];
 
 requiredEnvVars.forEach(envVar => {
@@ -22,20 +21,6 @@ requiredEnvVars.forEach(envVar => {
   }
 });
 
-// Password validation function
-const validatePassword = (password: string): boolean => {
-  const minLength = 8;
-  const hasUpperCase = /[A-Z]/.test(password);
-  const hasLowerCase = /[a-z]/.test(password);
-  const hasNumbers = /\d/.test(password);
-  const hasSpecialChar = /[!@#$%^&*]/.test(password);
-
-  return password.length >= minLength &&
-         hasUpperCase &&
-         hasLowerCase &&
-         hasNumbers &&
-         hasSpecialChar;
-};
 
 // Rate limiting for auth attempts
 const authAttempts = new Map<string, number[]>();

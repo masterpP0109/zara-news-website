@@ -6,6 +6,7 @@ interface UseBlogsOptions {
   limit?: number;
   published?: boolean;
   category?: string;
+  search?: string;
 }
 
 interface UseBlogsReturn {
@@ -22,7 +23,8 @@ export const useBlogs = ({
   endpoint,
   limit,
   published,
-  category
+  category,
+  search
 }: UseBlogsOptions): UseBlogsReturn => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,6 +40,7 @@ export const useBlogs = ({
       if (limit) params.append('limit', limit.toString());
       if (published !== undefined) params.append('published', published.toString());
       if (category) params.append('category', category);
+      if (search) params.append('search', search);
 
       const queryString = params.toString();
       const url = queryString ? `${endpoint}?${queryString}` : endpoint;
@@ -58,7 +61,7 @@ export const useBlogs = ({
 
   useEffect(() => {
     fetchBlogs();
-  }, [endpoint, limit, published, category]);
+  }, [endpoint, limit, published, category, search]);
 
   return {
     blogs,

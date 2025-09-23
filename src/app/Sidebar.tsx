@@ -8,7 +8,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { ArticleCard } from '@/components/ui/ArticleCard';
 
 const Sidebar = () => {
-  const { blogs: topStories, loading, error, refetch } = useBlogs({
+  const { blogs: topStories, loading, error } = useBlogs({
     endpoint: '/api/blogs',
     published: true,
     limit: 3

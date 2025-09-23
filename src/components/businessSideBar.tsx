@@ -10,7 +10,7 @@ import NewsletterSignup from "@/app/newsLetterSignUp";
 
 
 const BusinessSideBar = () => {
-  const { blogs: topStories, loading, error, refetch } = useBlogs({
+  const { blogs: topStories, loading, error } = useBlogs({
     endpoint: '/api/blogs',
     published: true,
     limit: 3

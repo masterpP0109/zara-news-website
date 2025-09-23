@@ -11,14 +11,18 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category');
     const published = searchParams.get('published');
     const author = searchParams.get('author');
+    const search = searchParams.get('search');
     const limit = Math.max(1, Math.min(100, parseInt(searchParams.get('limit') || '10') || 10));
     const skip = Math.max(0, parseInt(searchParams.get('skip') || '0') || 0);
 
-    const filter: { category?: string; published?: boolean; author?: string } = {};
+    const filter: { category?: string; published?: boolean; author?: string; $text?: { $search: string } } = {};
 
     if (category) filter.category = category;
     if (published !== null) filter.published = published === 'true';
     if (author) filter.author = author;
+    if (search && search.trim()) {
+      filter.$text = { $search: search.trim() };
+    }
 
     const blogs = await Blog.find(filter)
       .sort({ publishedAt: -1, createdAt: -1 })

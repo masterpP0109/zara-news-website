@@ -4,10 +4,6 @@ import { useState } from 'react';
 import { signIn, getSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Manrope, Inter } from 'next/font/google';
-
-const manrope = Manrope({ subsets: ['latin'] });
-const inter = Inter({ subsets: ['latin'] });
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -160,9 +156,8 @@ export default function LoginForm() {
 
             <div className="mt-6 grid grid-cols-1 gap-3">
               <div className="text-xs text-gray-500 text-center">
-                <p><strong>User:</strong> user@example.com / password123</p>
-                <p><strong>Admin:</strong> admin@example.com / password123</p>
-                <p><strong>Super Admin:</strong> superadmin@example.com / password123</p>
+                <p>Demo credentials available in development documentation</p>
+                <p>Or contact your administrator for access</p>
               </div>
             </div>
           </div>

@@ -24,6 +24,14 @@ async function hashPassword(password) {
 
 async function seedProductionUsers() {
   try {
+    // Verify we're in the intended environment
+    if (process.env.NODE_ENV !== 'production') {
+      throw new Error('This script should only run in production environment');
+    }
+
+    // Require explicit confirmation for destructive operation
+    console.warn('⚠️  WARNING: This will delete all existing users in production!');
+
     if (!process.env.MONGODB_URI) {
       throw new Error('MONGODB_URI environment variable is required');
     }

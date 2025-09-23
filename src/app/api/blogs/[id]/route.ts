@@ -83,7 +83,15 @@ export async function PUT(
     if (imageUrl !== undefined) blogData.imageUrl = imageUrl;
     if (published !== undefined) {
       blogData.published = Boolean(published);
-      blogData.publishedAt = published ? new Date() : null;
+      if (published && !blogData.publishedAt) {
+        // Only set publishedAt if blog is being published for the first time
+        const existingBlog = await Blog.findById(id).select('publishedAt');
+        if (!existingBlog?.publishedAt) {
+          blogData.publishedAt = new Date();
+        }
+      } else if (!published) {
+        blogData.publishedAt = null;
+      }
     }
 
     const blog = await Blog.findByIdAndUpdate(id, blogData, {

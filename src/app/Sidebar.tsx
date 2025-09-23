@@ -37,23 +37,14 @@ const Sidebar = () => {
           ))}
         </div>
 
-        <div className=" w-60 h-60 relative" >
-            <Image
-                         src="/images/8471e75fe110f1871ae8ab7eafbf883806222f1b (1).jpg"
-                         alt="logo"
-                      fill
-                     className="object-cover rounded-[1px]"
-                         priority
-                       />
-        </div>
-         <div className="flex flex-col divide-y divide-gray-300 mb-12 px-3 border-b-0">
-          {topStories.map((story) => (
-            <ArticleCard
-              key={story._id}
-              blog={story}
-              variant="sidebar"
-            />
-          ))}
+        <div className="w-60 h-60 relative mb-12">
+          <Image
+            src="/images/8471e75fe110f1871ae8ab7eafbf883806222f1b (1).jpg"
+            alt="Promotional banner"
+            fill
+            className="object-cover rounded-[1px]"
+            priority
+          />
         </div>
       </div>
     </div>

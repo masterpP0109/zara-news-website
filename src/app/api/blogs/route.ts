@@ -11,8 +11,8 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category');
     const published = searchParams.get('published');
     const author = searchParams.get('author');
-    const limit = parseInt(searchParams.get('limit') || '10');
-    const skip = parseInt(searchParams.get('skip') || '0');
+    const limit = Math.max(1, Math.min(100, parseInt(searchParams.get('limit') || '10') || 10));
+    const skip = Math.max(0, parseInt(searchParams.get('skip') || '0') || 0);
 
     const filter: { category?: string; published?: boolean; author?: string } = {};
 

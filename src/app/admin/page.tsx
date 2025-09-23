@@ -24,11 +24,22 @@ export default function AdminDashboard() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch('/api/blogs?limit=10');
+      const response = await fetch('/api/blogs?limit=10', {
+        headers: {
+          'Content-Type': 'application/json',
+          // Add authentication headers if required by your API
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch blogs: ${response.statusText}`);
+      }
+
       const data = await response.json();
       setBlogs(data.blogs || []);
     } catch (error) {
       console.error('Error fetching blogs:', error);
+      // Add user-facing error notification here
     } finally {
       setLoading(false);
     }
@@ -40,13 +51,20 @@ export default function AdminDashboard() {
     try {
       const response = await fetch(`/api/blogs/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add authentication headers
+        },
       });
 
       if (response.ok) {
         setBlogs(blogs.filter(blog => blog._id !== id));
+      } else {
+        throw new Error(`Failed to delete blog: ${response.statusText}`);
       }
     } catch (error) {
       console.error('Error deleting blog:', error);
+      // Add user-facing error notification
     }
   };
 
@@ -56,6 +74,7 @@ export default function AdminDashboard() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          // Add authentication headers
         },
         body: JSON.stringify({ published: !currentStatus }),
       });
@@ -64,9 +83,12 @@ export default function AdminDashboard() {
         setBlogs(blogs.map(blog =>
           blog._id === id ? { ...blog, published: !currentStatus } : blog
         ));
+      } else {
+        throw new Error(`Failed to update blog: ${response.statusText}`);
       }
     } catch (error) {
       console.error('Error updating blog:', error);
+      // Add user-facing error notification
     }
   };
 

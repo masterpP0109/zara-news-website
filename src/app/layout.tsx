@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Stay informed with the latest news, trending stories, and breaking news from around the world.",
 };
 
-export const viewport = "width=device-width, initial-scale=1, maximum-scale=1";
+export const viewport = "width=device-width, initial-scale=1";
 
 export default function RootLayout({
   children,

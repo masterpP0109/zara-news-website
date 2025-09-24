@@ -9,7 +9,7 @@ const Footer = () => {
           >
         <div>
           <div className="w-20 h-20 items-center">
-            <p>Zaira</p>
+            <Image src="/images/logo.png.png" alt="Zaira Logo" width={80} height={80} className="w-full h-full object-contain" />
           </div>
 
           <p className="text-[#183354] text-[12px] text-wrap">
@@ -197,13 +197,13 @@ const Footer = () => {
         </div>
        
       </div>
-       <div className="border-t border-gray-500 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center ">
-          <div className="flex items-center px-[20em] w-full">
-            <a href="#" className="hover:text-gray-600 transition-colors">Privacy Policy & Terms</a>
-            <a href="#" className="hover:text-gray-600 transition-colors">Site Guide</a>
-          </div>
-          <p>© 2024 All Rights Reserved</p>
-        </div>
+       <div className="border-t border-gray-500 mt-8 pt-8 flex flex-col md:flex-row justify-center items-center">
+         <div className="flex items-center gap-4">
+           <a href="#" className="hover:text-gray-600 transition-colors">Privacy Policy & Terms</a>
+           <a href="#" className="hover:text-gray-600 transition-colors">Site Guide</a>
+         </div>
+         <p>© 2024 All Rights Reserved</p>
+       </div>
     </footer>
   );
 };

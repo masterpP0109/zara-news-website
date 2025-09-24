@@ -115,10 +115,10 @@ const HotSpot = () => {
         </div>
       </div>
 
-      <div className="flex   p-2 gap-[3px] w-[600px] h-[350px] divide-w-[200px] divide-x divide-gray-300  ">
-        {blogs.map((blog) => (
+      <div className="flex p-2 gap-[3px] w-[600px] h-[350px]">
+        {blogs.map((blog, index) => (
           <div key={blog._id}
-            className="flex flex-col justify-evenly p-4 "  
+            className={`flex flex-col justify-evenly p-4 ${index < blogs.length - 1 ? 'border-r border-gray-300' : ''}`}
           >
             <div className="w-50 h-30 relative inset-0  ">
               <Image

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import Image from 'next/image';
+import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
@@ -17,7 +18,19 @@ const Header = () => {
   const [showFeaturesDropdown, setShowFeaturesDropdown] = useState(false);
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
   const { data: session, status } = useSession();
+  const router = useRouter();
 
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   return (
     <header className="flex flex-col items-center bg-white shadow-md transition-colors duration-300">
@@ -430,8 +443,13 @@ const Header = () => {
     className="px-3 py-2 w-48 text-sm focus:outline-none"
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
+    onKeyPress={handleKeyPress}
   />
-  <button className="px-3 py-2 bg-gray-100 hover:bg-gray-200 transition-colors">
+  <button
+    className="px-3 py-2 bg-gray-100 hover:bg-gray-200 transition-colors"
+    onClick={handleSearch}
+    aria-label="Search articles"
+  >
     <Search className="w-4 h-4 text-gray-600" />
   </button>
 </div>

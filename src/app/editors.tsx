@@ -135,13 +135,13 @@ const Editors = () => {
 
       <WideSectionHeader title="" className="mb-4" />
 
-      <div className="flex gap-3 w-full h-[350px] divide-x divide-gray-300">
-        {articles.map((article) => (
+      <div className="flex gap-3 w-full h-[230px]">
+        {articles.map((article, index) => (
           <ArticleCard
             key={article._id}
             blog={article}
             variant="compact"
-            className="flex-1 p-4"
+            className={`flex-1 p-4 ${index < articles.length - 1 ? 'border-r border-gray-300' : ''}`}
           />
         ))}
       </div>

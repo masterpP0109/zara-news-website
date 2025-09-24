@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
@@ -18,11 +18,7 @@ export default function UserDashboard() {
   const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
-
-  const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
     try {
       const response = await fetch(`/api/blogs?limit=10&author=${session?.user?.name}`);
       const data = await response.json();
@@ -32,7 +28,11 @@ export default function UserDashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [session]);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, [fetchBlogs]);
 
   const deleteBlog = async (id: string) => {
     if (!confirm('Are you sure you want to delete this blog?')) return;

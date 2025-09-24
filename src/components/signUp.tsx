@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 
 const SignUp = () => {
   return (
-    <section className="bg-gray-50 py-16">
-      <div className="max-w-7xl mx-auto px-4 text-center">
+    <section className="bg-gray-50 py-16 w-full">
+      <div className="maw-full mx-auto px-4 text-center">
         <h2 className="text-lg font-bold text-gray-900 mb-4">
           Get Subscribe To Our Latest News & Update
         </h2>

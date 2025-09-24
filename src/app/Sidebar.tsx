@@ -1,17 +1,21 @@
 "use client";
 import React from "react";
-import Image from 'next/image';
-import { useBlogs } from '@/hooks/useBlogs';
-import { SidebarSkeleton } from '@/components/ui/LoadingSkeleton';
-import { InlineError } from '@/components/ui/ErrorState';
-import { SectionHeader } from '@/components/ui/SectionHeader';
-import { ArticleCard } from '@/components/ui/ArticleCard';
+import Image from "next/image";
+import { useBlogs } from "@/hooks/useBlogs";
+import { SidebarSkeleton } from "@/components/ui/LoadingSkeleton";
+import { InlineError } from "@/components/ui/ErrorState";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ArticleCard } from "@/components/ui/ArticleCard";
 
 const Sidebar = () => {
-  const { blogs: topStories, loading, error } = useBlogs({
-    endpoint: '/api/blogs',
+  const {
+    blogs: topStories,
+    loading,
+    error,
+  } = useBlogs({
+    endpoint: "/api/blogs",
     published: true,
-    limit: 3
+    limit: 4,
   });
 
   if (loading) {
@@ -21,19 +25,13 @@ const Sidebar = () => {
   return (
     <div className="px-2 py-2 w-full">
       <div className="flex flex-col w-full max-w-xs mx-auto lg:mx-0 border-l border-l-gray-500 mb-12 px-3 border-b-0">
-        <SectionHeader 
-        className="text-[10px]"
-        title="Top Stories" />
+        <SectionHeader className="text-[10px]" title="Top Stories" />
 
         {error && <InlineError message={error} />}
 
         <div className="flex flex-col divide-y divide-gray-300 mb-12 px-3 border-b-0">
           {topStories.map((story) => (
-            <ArticleCard
-              key={story._id}
-              blog={story}
-              variant="sidebar"
-            />
+            <ArticleCard key={story._id} blog={story} variant="sidebar" />
           ))}
         </div>
 
@@ -46,10 +44,15 @@ const Sidebar = () => {
             priority
           />
         </div>
+
+        <div className="flex flex-col divide-y divide-gray-300 mb-12 px-3 border-b-0">
+          {topStories.map((story) => (
+            <ArticleCard key={story._id} blog={story} variant="sidebar" />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default Sidebar;
-

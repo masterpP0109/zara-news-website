@@ -55,12 +55,12 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
     return (
       <article className={`flex flex-col py-2 ${className}`}>
         {showImage && (
-          <div className="relative h-20 w-full mb-2">
+          <div className="relative h-40 w-full mb-2">
             <Image
               src={blog.imageUrl || '/images/default-article.jpg'}
               alt={blog.title}
               fill
-              className="object-cover rounded"
+              className="object-cover "
               priority
             />
           </div>

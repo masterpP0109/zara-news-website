@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
   clientPromise = client.connect();
 }
 
-// Mongoose connection
+
 interface MongooseCache {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
@@ -55,11 +55,11 @@ export async function connectToDatabase() {
     };
 
     cached.promise = mongoose.connect(uri, opts).then((mongoose) => {
-      console.log('✅ Connected to MongoDB Atlas successfully');
+      console.log(' Connected to MongoDB Atlas successfully');
       console.log('Database:', mongoose.connection.db?.databaseName);
       return mongoose;
     }).catch((err) => {
-      console.error('❌ MongoDB connection error:', err.message);
+      console.error('MongoDB connection error:', err.message);
       console.error('Please check your MONGODB_URI in .env.local');
       console.error('Make sure your IP address is whitelisted in MongoDB Atlas');
       throw err;

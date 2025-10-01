@@ -87,7 +87,7 @@ export async function PUT(
         // Only set publishedAt if blog is being published for the first time
         const existingBlog = await Blog.findById(id).select('publishedAt');
         if (!existingBlog?.publishedAt) {
-          blogData.publishedAt = new Date();
+          blogData.publishedAt = new Date().toISOString();
         }
       } else if (!published) {
         blogData.publishedAt = null;
@@ -106,6 +106,72 @@ export async function PUT(
     return NextResponse.json(blog);
   } catch (error) {
     console.error('Error updating blog:', error);
+    return NextResponse.json(
+      { message: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
+// ------------------ LIKE/UNLIKE or ADD COMMENT ------------------
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    await connectToDatabase();
+
+    const { id } = await params;
+    const body = await request.json();
+    const { action, userId, userName, comment } = body;
+
+    const blog = await Blog.findById(id);
+    if (!blog) {
+      return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
+    }
+
+    // Handle like/unlike
+    if (action === 'like' || action === 'unlike') {
+      if (!userId || !['like', 'unlike'].includes(action)) {
+        return NextResponse.json({ message: 'Invalid request' }, { status: 400 });
+      }
+
+      blog.likes = blog.likes || [];
+      if (action === 'like') {
+        if (!blog.likes.includes(userId)) {
+          blog.likes.push(userId);
+        }
+      } else if (action === 'unlike') {
+        blog.likes = blog.likes.filter((like: string) => like !== userId);
+      }
+
+      await blog.save();
+
+      return NextResponse.json({ likes: blog.likes.length, liked: blog.likes.includes(userId) });
+    }
+
+    // Handle comment
+    if (comment !== undefined) {
+      if (!userId || !userName || !comment) {
+        return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
+      }
+
+      blog.comments = blog.comments || [];
+      blog.comments.push({
+        userId,
+        userName,
+        comment,
+        createdAt: new Date().toISOString()
+      });
+
+      await blog.save();
+
+      return NextResponse.json(blog.comments[blog.comments.length - 1]);
+    }
+
+    return NextResponse.json({ message: 'Invalid request' }, { status: 400 });
+  } catch (error) {
+    console.error('Error:', error);
     return NextResponse.json(
       { message: 'Internal server error' },
       { status: 500 }

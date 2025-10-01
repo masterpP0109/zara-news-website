@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { User, Zap, LogOut, X } from "lucide-react";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
-import DateDisplay from "@/components/dateDisplay";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import Link from "next/link";
@@ -35,8 +34,8 @@ const Header = () => {
   return (
     <header className="flex flex-col items-center bg-white shadow-md transition-colors duration-300">
       {/* Top Bar */}
-      <div className="w-full max-w-7xl h-auto min-h-[35px] py-2 px-4 sm:px-6 lg:px-8 flex items-center justify-between bg-slate-800">
-        <div className="flex items-center justify-between gap-2 flex-1">
+      <div className="w-full max-w-[98vw] h-auto min-h-[35px] py-2 px-4 sm:px-6 md:px-8 lg:px-[12em] flex items-center justify-between bg-slate-800">
+        <div className="flex items-center justify-between gap-2  ">
           <h6 className="text-xs sm:text-sm font-extrabold text-white">Trending</h6>
           <div className="flex items-center">
             <div className="relative w-16 sm:w-20 h-5 sm:h-6">
@@ -57,7 +56,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="flex space-x-2 sm:space-x-4">
+        <div className="flex gap-2 ">
           <a href="#" className="text-gray-200 hover:text-blue-400 transition-colors">
             <Facebook className="w-3 h-3 sm:w-4 sm:h-4" />
           </a>
@@ -74,15 +73,15 @@ const Header = () => {
       </div>
 
       {/* Main Header */}
-      <div className="flex items-center justify-between border-b border-gray-400 w-full max-w-7xl h-16 px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between border-b border-gray-400 w-full max-w-7xl py-2 px-4 sm:px-6 md:px-8 lg:px-[11em]">
         <div className="flex items-center gap-4">
-          <DateDisplay />
-             <div className="flex items-center rounded-full justify-center  w-[60px] h-[60px]">
+        
+             <div className="flex items-center rounded-full justify-center  w-[110px] h-[90px]">
             <Image
               src="/images/logo.png.png"
               alt="logo"
-              width={60}
-              height={60}
+              width={180}
+              height={130}
                         className="object-cover rounded-[1px]"
               priority
             />
@@ -90,50 +89,50 @@ const Header = () => {
         </div>
 
         {/* User Section */}
-        <div className="hidden md:block">
+        <div className="hidden sm:block">
           {status === 'loading' ? (
             <div className="flex items-center gap-2">
-              <div className="w-5 flex items-center justify-center h-5 rounded-full border border-gray-600">
-                <User className="w-5 h-5 text-gray-600" />
+              <div className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full border border-gray-600">
+                <User className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
               </div>
-              <p className="text-sm font-semibold text-gray-600">Loading...</p>
+              <p className="text-xs sm:text-sm font-semibold text-gray-600">Loading...</p>
             </div>
           ) : session ? (
-            <div className="flex items-center gap-2">
-              <div className="w-5 flex items-center justify-center h-5 rounded-full border border-gray-600">
-                <User className="w-5 h-5 text-gray-600" />
+            <div className="flex items-center gap-1 sm:gap-2">
+              <div className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full border border-gray-600">
+                <User className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
               </div>
               <div className="flex flex-col">
-                <p className="text-sm font-semibold text-gray-600">{session.user?.name}</p>
+                <p className="text-xs sm:text-sm font-semibold text-gray-600">{session.user?.name}</p>
                 <p className="text-xs text-gray-500 capitalize">{session.user?.role}</p>
               </div>
               <button
                 onClick={() => signOut()}
-                className="ml-2 text-gray-600 hover:text-gray-800 transition-colors"
+                className="ml-1 sm:ml-2 text-gray-600 hover:text-gray-800 transition-colors"
                 title="Sign out"
               >
-                <LogOut className="w-4 h-4" />
+                <LogOut className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
             </div>
           ) : (
-            <Link href="/login" className="flex items-center gap-2">
-              <div className="w-5 flex items-center justify-center h-5 rounded-full border border-gray-600">
-                <User className="w-5 h-5 text-gray-600" />
+            <Link href="/login" className="flex items-center gap-1 sm:gap-2">
+              <div className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full border border-gray-600">
+                <User className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
               </div>
-              <p className="text-sm font-semibold text-gray-600">Sign in</p>
+              <p className="text-xs sm:text-sm font-semibold text-gray-600">Sign in</p>
             </Link>
           )}
         </div>
 
         {/* Subscribe Button */}
-        <div className="hidden md:block">
-          <Button variant="default" className="bg-rose-500/90 hover:bg-rose-600 rounded-md px-4 py-2">
+        <div className="hidden sm:block">
+          <Button variant="default" className="bg-rose-500/90 hover:bg-rose-600 rounded-md px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm">
             Subscribe
           </Button>
         </div>
       </div>
 
-      <div className="flex items-center justify-around w-full">
+      <div className="flex items-center justify-around w-full py-2 px-4 sm:px-6 md:px-8 lg:px-[13em]">
         <div className="flex items-center px-2 py-1 border-l border-r border-gray-400">
           <button
             className="text-2xl hover:bg-gray-100 p-2 rounded transition-colors duration-200 cursor-pointer"
@@ -329,7 +328,7 @@ const Header = () => {
           </div>
         )}
 {/* Desktop Navigation */}
-<nav className="hidden lg:flex items-center space-x-6">
+<nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
   <div className="relative">
     <button
       className="flex items-center font-semibold text-blue-900 text-sm hover:text-rose-400 transition-colors"
@@ -436,21 +435,21 @@ const Header = () => {
 </nav>
 
 {/* Search Bar - Desktop */}
-<div className="hidden lg:flex items-center border border-gray-300 rounded-md overflow-hidden bg-white">
+<div className="hidden md:flex items-center border border-gray-300 rounded-md overflow-hidden bg-white">
   <input
     type="text"
     placeholder="Search here..."
-    className="px-3 py-2 w-48 text-sm focus:outline-none"
+    className="px-2 sm:px-3 py-2 w-32 sm:w-48 text-xs sm:text-sm focus:outline-none"
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
     onKeyPress={handleKeyPress}
   />
   <button
-    className="px-3 py-2 bg-gray-100 hover:bg-gray-200 transition-colors"
+    className="px-2 sm:px-3 py-2 bg-gray-100 hover:bg-gray-200 transition-colors"
     onClick={handleSearch}
     aria-label="Search articles"
   >
-    <Search className="w-4 h-4 text-gray-600" />
+    <Search className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
   </button>
 </div>
       </div>

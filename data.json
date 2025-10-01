@@ -15,7 +15,22 @@
     "published": true,
     "publishedAt": "2024-09-15T10:00:00.000Z",
     "createdAt": "2024-09-14T15:30:00.000Z",
-    "updatedAt": "2024-09-15T10:00:00.000Z"
+    "updatedAt": "2024-09-15T10:00:00.000Z",
+    "likes": ["507f1f77bcf86cd799439011", "507f1f77bcf86cd799439012"],
+    "comments": [
+      {
+        "userId": "507f1f77bcf86cd799439011",
+        "userName": "John Doe",
+        "comment": "This is a great step forward for democracy!",
+        "createdAt": "2024-09-15T11:00:00.000Z"
+      },
+      {
+        "userId": "507f1f77bcf86cd799439012",
+        "userName": "Jane Smith",
+        "comment": "I hope this leads to real change.",
+        "createdAt": "2024-09-15T12:30:00.000Z"
+      }
+    ]
   },
   {
     "title": "Election Results Spark National Debate",
@@ -33,7 +48,9 @@
     "published": true,
     "publishedAt": "2024-09-10T08:00:00.000Z",
     "createdAt": "2024-09-09T12:15:00.000Z",
-    "updatedAt": "2024-09-10T08:00:00.000Z"
+    "updatedAt": "2024-09-10T08:00:00.000Z",
+    "likes": [],
+    "comments": []
   },
   {
     "title": "International Relations Take Center Stage",
@@ -51,7 +68,9 @@
     "published": true,
     "publishedAt": "2024-09-08T14:30:00.000Z",
     "createdAt": "2024-09-07T09:45:00.000Z",
-    "updatedAt": "2024-09-08T14:30:00.000Z"
+    "updatedAt": "2024-09-08T14:30:00.000Z",
+    "likes": [],
+    "comments": []
   },
   {
     "title": "Constitutional Changes Proposed",
@@ -94,7 +113,7 @@
     "content": "World leaders have reached a landmark agreement at the annual climate summit, committing to ambitious carbon reduction targets and increased funding for green initiatives. The pact includes binding commitments from 195 countries, with specific timelines for achieving net-zero emissions. Environmental groups have hailed the agreement as a turning point in the global fight against climate change, though critics argue the targets may not be aggressive enough given current scientific projections.",
     "excerpt": "Global climate agreement sets new standards for environmental protection and sustainable development.",
     "author": "Emma Rodriguez",
-    "category": "HotSpot",
+    "category": "hotSpot",
     "tags": [
       "climate",
       "environment",
@@ -105,7 +124,9 @@
     "published": true,
     "publishedAt": "2024-09-13T16:30:00.000Z",
     "createdAt": "2024-09-12T11:45:00.000Z",
-    "updatedAt": "2024-09-13T16:30:00.000Z"
+    "updatedAt": "2024-09-13T16:30:00.000Z",
+    "likes": [],
+    "comments": []
   },
   {
     "title": "Global Economic Indicators Show Recovery",
@@ -184,7 +205,7 @@
     "content": "Leading technology company has just released its latest AI innovation that promises to transform industries worldwide. The new system combines advanced machine learning with quantum computing capabilities, offering unprecedented processing speeds and accuracy. Early adopters in healthcare and finance sectors report significant improvements in efficiency and decision-making processes. Industry analysts predict this could be the biggest breakthrough in AI since the introduction of deep learning.",
     "excerpt": "Groundbreaking AI technology from tech giant set to revolutionize multiple industries with quantum-enhanced processing.",
     "author": "Michael Chen",
-    "category": "Trending",
+    "category": "trending",
     "tags": [
       "technology",
       "AI",
@@ -195,7 +216,22 @@
     "published": true,
     "publishedAt": "2024-09-14T14:00:00.000Z",
     "createdAt": "2024-09-13T09:15:00.000Z",
-    "updatedAt": "2024-09-14T14:00:00.000Z"
+    "updatedAt": "2024-09-14T14:00:00.000Z",
+    "likes": ["507f1f77bcf86cd799439013", "507f1f77bcf86cd799439014", "507f1f77bcf86cd799439015"],
+    "comments": [
+      {
+        "userId": "507f1f77bcf86cd799439013",
+        "userName": "Tech Enthusiast",
+        "comment": "This is incredible! The potential applications are endless.",
+        "createdAt": "2024-09-14T15:30:00.000Z"
+      },
+      {
+        "userId": "507f1f77bcf86cd799439014",
+        "userName": "AI Researcher",
+        "comment": "Finally, quantum computing meets practical AI applications.",
+        "createdAt": "2024-09-14T16:45:00.000Z"
+      }
+    ]
   },
   {
     "title": "Cryptocurrency Market Volatility Continues",
@@ -249,7 +285,9 @@
     "published": true,
     "publishedAt": "2024-09-12T12:00:00.000Z",
     "createdAt": "2024-09-11T08:20:00.000Z",
-    "updatedAt": "2024-09-12T12:00:00.000Z"
+    "updatedAt": "2024-09-12T12:00:00.000Z",
+    "likes": [],
+    "comments": []
   },
   {
     "title": "Deep Dive: Urban Planning Challenges",
@@ -321,7 +359,28 @@
     "published": true,
     "publishedAt": "2024-09-11T18:00:00.000Z",
     "createdAt": "2024-09-10T14:10:00.000Z",
-    "updatedAt": "2024-09-11T18:00:00.000Z"
+    "updatedAt": "2024-09-11T18:00:00.000Z",
+    "likes": [],
+    "comments": []
+  },
+  {
+    "title": "Innovation Summit Showcases Future Technologies",
+    "content": "The annual Innovation Summit brought together leading technologists, entrepreneurs, and policymakers to explore emerging technologies that will shape the future. From artificial intelligence and quantum computing to sustainable energy solutions and biotechnology, the event featured groundbreaking presentations and interactive demonstrations. Attendees gained insights into how these innovations will transform industries and improve quality of life worldwide.",
+    "excerpt": "Annual Innovation Summit explores cutting-edge technologies shaping the future of industries and society.",
+    "author": "Dr. Jennifer Chen",
+    "category": "Featured",
+    "tags": [
+      "technology",
+      "innovation",
+      "AI",
+      "quantum computing",
+      "biotechnology"
+    ],
+    "imageUrl": "/images/article_image4.jpg",
+    "published": true,
+    "publishedAt": "2024-09-09T16:00:00.000Z",
+    "createdAt": "2024-09-08T12:30:00.000Z",
+    "updatedAt": "2024-09-09T16:00:00.000Z"
   },
   {
     "title": "Global Trade Agreements Reshaping Economies",
@@ -526,7 +585,7 @@
     "content": "The latest Olympic Games achieved unprecedented levels of participation, with athletes from over 200 countries competing in diverse sporting events. The games showcased remarkable athletic achievements and international cooperation. Innovations in sports technology and training methods contributed to record-breaking performances across multiple disciplines.",
     "excerpt": "Olympic Games achieve record participation and showcase international sporting excellence.",
     "author": "John Martinez",
-    "category": "Sports",
+    "category": "sports",
     "tags": [
       "olympics",
       "athletics",
@@ -537,7 +596,9 @@
     "published": true,
     "publishedAt": "2024-09-16T09:00:00.000Z",
     "createdAt": "2024-09-15T14:30:00.000Z",
-    "updatedAt": "2024-09-16T09:00:00.000Z"
+    "updatedAt": "2024-09-16T09:00:00.000Z",
+    "likes": [],
+    "comments": []
   },
   {
     "title": "Esports Industry Reaches Billion-Dollar Milestone",

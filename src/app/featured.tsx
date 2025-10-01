@@ -9,11 +9,11 @@ const Featured = () => {
   const { blogs: articles, loading, error, refetch } = useBlogs({
     endpoint: '/api/blogs/category/Featured',
     published: true,
-    limit: 3
+    limit: 2
   });
 
   if (loading) {
-    return <ArticleSkeleton count={3} />;
+    return <ArticleSkeleton count={2} />;
   }
 
   if (error) {

@@ -37,11 +37,11 @@ async function seedProductionUsers() {
     }
 
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('✅ Connected to production database');
+    console.log(' Connected to production database');
 
     // Clear existing users
     await User.deleteMany({});
-    console.log('🧹 Cleared existing users');
+    console.log(' Cleared existing users');
 
     // Create users with hashed passwords
     const users = [
@@ -60,14 +60,14 @@ async function seedProductionUsers() {
     ];
 
     await User.insertMany(users);
-    console.log(`✅ Seeded ${users.length} production users`);
+    console.log(`Seeded ${users.length} production users`);
 
     // List created users (without passwords)
     const createdUsers = await User.find({}, { password: 0 });
     console.log('👥 Created users:', createdUsers);
 
   } catch (error) {
-    console.error('❌ Seeding failed:', error.message);
+    console.error(' Seeding failed:', error.message);
     process.exit(1);
   } finally {
     await mongoose.connection.close();

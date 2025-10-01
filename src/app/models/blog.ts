@@ -1,18 +1,46 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+export interface IComment {
+  userId: string;
+  userName: string;
+  comment: string;
+  createdAt: string;
+}
+
 export interface IBlog extends Document {
   title: string;
   content: string;
   excerpt?: string;
   author: string;
-  category: 'politics' | 'trending' | 'hotSpot' | 'editors' | 'featured' | 'other';
+  category: 'politics' | 'trending' | 'hotspot' | 'Editors' | 'featured' | 'other';
   tags?: string[];
   imageUrl?: string;
   published: boolean;
-  publishedAt?: Date | null;
-  createdAt: Date;
-  updatedAt: Date;
+  publishedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  likes: string[]; // Array of user IDs who liked
+  comments: IComment[];
 }
+
+const commentSchema = new Schema<IComment>({
+  userId: {
+    type: String,
+    required: true
+  },
+  userName: {
+    type: String,
+    required: true
+  },
+  comment: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: String,
+    default: () => new Date().toISOString()
+  }
+});
 
 const blogSchema = new Schema<IBlog>({
   title: {
@@ -37,7 +65,7 @@ const blogSchema = new Schema<IBlog>({
   category: {
     type: String,
     required: true,
-    enum: ['politics', 'trending', 'hotSpot', 'editors', 'featured', 'other'],
+    enum: ['politics', 'trending', 'hotspot', 'Editors', 'featured', 'other', 'world', 'sports', 'tech', 'modern', 'swimming', 'boxing', 'basketball', 'football'],
     default: 'other'
   },
   tags: [{
@@ -53,28 +81,34 @@ const blogSchema = new Schema<IBlog>({
     default: false
   },
   publishedAt: {
-    type: Date
+    type: String
   },
   createdAt: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: () => new Date().toISOString()
   },
   updatedAt: {
-    type: Date,
-    default: Date.now
-  }
+    type: String,
+    default: () => new Date().toISOString()
+  },
+  likes: [{
+    type: String // User IDs
+  }],
+  comments: [commentSchema]
 });
 
 // Update the updatedAt field before saving
 blogSchema.pre('save', function(next) {
-  this.updatedAt = new Date();
+  this.updatedAt = new Date().toISOString();
   next();
 });
 
 // Index for better query performance
 blogSchema.index({ category: 1, published: 1, publishedAt: -1 });
 blogSchema.index({ title: 'text', content: 'text' });
+blogSchema.index({ 'comments.userId': 1 });
 
-const Blog = mongoose.models.Blog || mongoose.model<IBlog>('Blog', blogSchema);
+delete mongoose.models.Blog;
+const Blog = mongoose.model<IBlog>('Blog', blogSchema);
 
 export default Blog;

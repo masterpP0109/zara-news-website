@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import DateDisplay from '@/components/dateDisplay';
 
 interface Blog {
   _id: string;
@@ -133,7 +134,7 @@ export default function UserDashboard() {
                     <div className="flex-1">
                       <h3 className="text-lg font-medium text-gray-900">{blog.title}</h3>
                       <p className="text-sm text-gray-500">
-                        By {blog.author} • {blog.category} • {new Date(blog.createdAt).toLocaleDateString()}
+                        By {blog.author} • {blog.category} • <DateDisplay date={blog.createdAt} />
                       </p>
                     </div>
                     <div className="flex items-center space-x-4">

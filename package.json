@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "seed:blogs": "node seed-blogs.js",
     "seed:prod": "node seed-users-prod.js",
     "seed:dev": "NODE_ENV=development node seed-users.js"
   },

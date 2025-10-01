@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import DateDisplay from "@/components/dateDisplay";
 
 interface Blog {
   _id: string;
@@ -149,18 +150,19 @@ const Politics = () => {
       {/* Section Header */}
       <div className="flex items-center p-4">
         <h3>Politics</h3>
-        <div className="w-[600px] h-[9px] flex gap-[6px]">
+        <div className="w-full sm:w-[500px] md:w-[550px] lg:w-[600px] h-[9px] flex gap-[6px]">
           <div className="h-[5px] w-[30px] bg-rose-500 transform skew-x-3"></div>
           <div>
-            <div className="w-[570px] border-t border-b border-gray-400 h-[5px]"></div>
+            <div className="w-full sm:w-[470px] md:w-[520px] lg:w-[570px] border-t border-b border-gray-400 h-[5px]"></div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="flex gap-4">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="flex flex-col items-center sm:flex-row gap-4">
         {/* Rotating Main Image */}
-        <div className="relative h-[170px] w-[240px] overflow-hidden">
+        <div className="relative h-[150px] sm:h-[160px] md:h-[170px] w-full sm:w-[200px] md:w-[220px] lg:w-[240px] overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeArticle._id + "-image"}
@@ -182,7 +184,7 @@ const Politics = () => {
         </div>
 
         {/* Rotating Main Article */}
-        <div className="flex flex-col w-[170px] gap-4">
+        <div className="flex flex-col w-full sm:w-[150px] md:w-[160px] lg:w-[170px] gap-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeArticle._id + "-text"}
@@ -193,7 +195,7 @@ const Politics = () => {
               className="border-b pb-2"
             >
               <p className="text-xs text-gray-500">{activeArticle.category}</p>
-              <h5 className="text-[0.8rem] font-bold text-gray-800">
+              <h5 className="text-xs sm:text-[0.8rem] font-bold text-gray-800">
                 {activeArticle.title}
               </h5>
               <div className="flex items-center gap-3 mt-2">
@@ -203,7 +205,7 @@ const Politics = () => {
                   </span>
                   <p className="text-xs text-gray-500">{activeArticle.author}</p>
                 </div>
-                <p className="text-xs text-gray-500">{new Date(activeArticle.publishedAt || activeArticle.createdAt).toLocaleDateString()}</p>
+                <DateDisplay date={activeArticle.publishedAt || activeArticle.createdAt} />
               </div>
               <p className="text-xs text-gray-600 mt-1">
                 {activeArticle.excerpt || 'Read more about this political development...'}
@@ -216,7 +218,7 @@ const Politics = () => {
         </div>
 
         {/* 3 Independently Rotating Sub Articles */}
-        <div className="w-[200px] border-l border-gray-300 pl-4 flex flex-col ">
+        <div className="w-full sm:w-[180px] md:w-[190px] lg:w-[200px] sm:border-l border-gray-300 sm:pl-4 flex flex-col ">
           {[slot1, slot2, slot3].map((slot, index) => {
             const sub = subArticles[slot];
             if (!sub) return null; // Skip if no sub-article available
@@ -236,12 +238,13 @@ const Politics = () => {
                     <h5 className="text-[0.7rem] font-bold text-gray-800">
                       {sub.title}
                     </h5>
-                    <p className="text-xs text-gray-500">{new Date(sub.publishedAt || sub.createdAt).toLocaleDateString()}</p>
+                    <DateDisplay date={sub.publishedAt || sub.createdAt} />
                   </motion.div>
                 </AnimatePresence>
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     </div>

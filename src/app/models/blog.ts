@@ -12,7 +12,7 @@ export interface IBlog extends Document {
   content: string;
   excerpt?: string;
   author: string;
-  category: 'politics' | 'trending' | 'hotspot' | 'Editors' | 'featured' | 'other';
+  category: 'politics' | 'Politics' | 'trending' | 'Trending' | 'hotspot' | 'hotSpot' | 'HotSpot' | 'Editors' | 'featured' | 'Featured' | 'other' | 'world' | 'World' | 'sports' | 'Sports' | 'tech' | 'Tech' | 'modern' | 'Modern' | 'swimming' | 'Swimming' | 'boxing' | 'Boxing' | 'basketball' | 'Basketball' | 'football' | 'Football';
   tags?: string[];
   imageUrl?: string;
   published: boolean;
@@ -65,7 +65,7 @@ const blogSchema = new Schema<IBlog>({
   category: {
     type: String,
     required: true,
-    enum: ['politics', 'trending', 'hotspot', 'Editors', 'featured', 'other', 'world', 'sports', 'tech', 'modern', 'swimming', 'boxing', 'basketball', 'football'],
+    enum: ['politics', 'Politics', 'trending', 'Trending', 'hotspot', 'hotSpot', 'HotSpot', 'Editors', 'featured', 'Featured', 'other', 'world', 'World', 'sports', 'Sports', 'tech', 'Tech', 'modern', 'Modern', 'swimming', 'Swimming', 'boxing', 'Boxing', 'basketball', 'Basketball', 'football', 'Football'],
     default: 'other'
   },
   tags: [{

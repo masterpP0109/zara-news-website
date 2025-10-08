@@ -44,7 +44,7 @@ const HotSpot = () => {
         <div className="flex items-center gap-[6px]">
           <h3>Today,s Hotspot</h3>
           <div className="w-[600px] h-[9px] flex gap-[6px]">
-            <div className="h-[5px] w-[30px] bg-rose-500 transform skew-x-3"></div>
+            <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className="transform skew-x-3" />
             <div>
               <div className="w-[480px] border-t border-b border-gray-400 h-[5px]"></div>
             </div>
@@ -74,7 +74,7 @@ const HotSpot = () => {
         <div className="flex items-center gap-[6px]">
           <h3>Today,s Hotspot</h3>
           <div className="w-[600px] h-[9px] flex gap-[6px]">
-            <div className="h-[5px] w-[30px] bg-rose-500 transform skew-x-3"></div>
+            <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className="transform skew-x-3" />
             <div>
               <div className="w-[480px] border-t border-b border-gray-400 h-[5px]"></div>
             </div>
@@ -91,7 +91,7 @@ const HotSpot = () => {
         <div className="flex items-center gap-[6px]">
           <h3>Today,s Hotspot</h3>
           <div className="w-[600px] h-[9px] flex gap-[6px]">
-            <div className="h-[5px] w-[30px] bg-rose-500 transform skew-x-3"></div>
+            <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className="transform skew-x-3" />
             <div>
               <div className="w-[480px] border-t border-b border-gray-400 h-[5px]"></div>
             </div>
@@ -108,7 +108,7 @@ const HotSpot = () => {
       <div className="flex items-center gap-[6px]">
         <h3>Today,s Hotspot</h3>
         <div className="w-[600px] h-[9px] flex gap-[6px]">
-          <div className="h-[5px] w-[30px] bg-rose-500 transform skew-x-3"></div>
+          <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className="transform skew-x-3" />
           <div>
             <div className="w-[480px] border-t border-b border-gray-400 h-[5px]"></div>
           </div>

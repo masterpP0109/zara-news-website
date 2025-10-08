@@ -21,7 +21,7 @@ const WorldTopNews = () => {
     return (
       <div>
         <div className="w-[150px] h-[9px] flex gap-[6px] mb-4">
-          <div className="h-[5px] w-[30px] bg-rose-500 transform skew-x-3 animate-pulse"></div>
+          <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className="transform skew-x-3 animate-pulse" />
           <div>
             <div className="w-[70px] border-t-[1px] border-b-[1px] border-gray-400 h-[5px] animate-pulse"></div>
           </div>

@@ -10,6 +10,7 @@ import { formatDate, getDisplayDate } from '@/lib/dateUtils';
 import { Blog } from '@/types/blog';
 import { IComment } from '@/app/models/blog';
 import { ArticleCard } from '@/components/ui/ArticleCard';
+import RecentComments from '@/components/RecentComments';
 
 const BlogDetail = () => {
   const params = useParams();
@@ -305,6 +306,11 @@ const BlogDetail = () => {
               ))
             )}
           </div>
+        </div>
+
+        {/* Recent Comments */}
+        <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
+          <RecentComments />
         </div>
 
         {/* Related Articles */}

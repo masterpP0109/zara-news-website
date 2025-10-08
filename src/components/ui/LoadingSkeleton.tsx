@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface LoadingSkeletonProps {
@@ -63,7 +64,7 @@ export const SidebarSkeleton: React.FC<{ count?: number }> = ({ count = 3 }) => 
       <div className="flex flex-col w-full max-w-xs mx-auto lg:mx-0 border-l border-l-gray-500 mb-12 px-3 border-b-0">
         {/* Top Stories Section */}
         <div className="w-[150px] h-[9px] flex gap-[6px] mb-2">
-          <div className="h-[5px] w-[30px] bg-rose-500 transform skew-x-3 animate-pulse"></div>
+          <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className="transform skew-x-3 animate-pulse" />
           <div>
             <div className="w-[70px] border-t-[1px] border-b-[1px] border-gray-400 h-[5px] animate-pulse"></div>
           </div>
@@ -88,7 +89,7 @@ export const SidebarSkeleton: React.FC<{ count?: number }> = ({ count = 3 }) => 
 
         {/* Trending Section */}
         <div className="w-[150px] h-[9px] flex gap-[6px] mb-2">
-          <div className="h-[5px] w-[30px] bg-rose-500 transform skew-x-3 animate-pulse"></div>
+          <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className="transform skew-x-3 animate-pulse" />
           <div>
             <div className="w-[70px] border-t-[1px] border-b-[1px] border-gray-400 h-[5px] animate-pulse"></div>
           </div>

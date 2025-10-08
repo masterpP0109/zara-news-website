@@ -54,14 +54,23 @@ export async function connectToDatabase() {
       useUnifiedTopology: true,
     };
 
+    console.log('Attempting to connect to MongoDB with URI:', uri.replace(/:([^:@]{4})[^:@]*@/, ':$1****@')); // Mask password
+    console.log('Connection options:', opts);
+
     cached.promise = mongoose.connect(uri, opts).then((mongoose) => {
-      console.log(' Connected to MongoDB Atlas successfully');
+      console.log(' Connected to MongoDB successfully');
       console.log('Database:', mongoose.connection.db?.databaseName);
+      console.log('Host:', mongoose.connection.host);
+      console.log('Port:', mongoose.connection.port);
       return mongoose;
     }).catch((err) => {
       console.error('MongoDB connection error:', err.message);
+      console.error('Error code:', err.code);
+      console.error('Error name:', err.name);
+      console.error('Current MONGODB_URI:', uri.replace(/:([^:@]{4})[^:@]*@/, ':$1****@'));
       console.error('Please check your MONGODB_URI in .env.local');
-      console.error('Make sure your IP address is whitelisted in MongoDB Atlas');
+      console.error('If using local MongoDB, ensure MongoDB service is running');
+      console.error('If using MongoDB Atlas, ensure IP whitelist and credentials are correct');
       throw err;
     });
   }

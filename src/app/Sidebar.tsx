@@ -23,9 +23,9 @@ const Sidebar = () => {
     loading: trendingLoading,
     error: trendingError,
   } = useBlogs({
-    endpoint: "/api/blogs/category/Trending",
+    endpoint: "/api/blogs/category/World,Tech,Business",
     published: true,
-    limit: 5,
+    limit: 4,
   });
 
   if (topStoriesLoading || trendingLoading) {
@@ -55,7 +55,7 @@ const Sidebar = () => {
           />
         </div>
 
-        <SectionHeader className="text-[10px]" title="Top Stories" />
+        <SectionHeader className="text-[10px]" title="Trending" />
 
         {trendingError && <InlineError message={trendingError} />}
 

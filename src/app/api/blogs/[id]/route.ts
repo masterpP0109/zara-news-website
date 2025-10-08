@@ -5,11 +5,32 @@ import Blog, { IBlog } from '@/app/models/blog';
 
 const VALID_CATEGORIES = [
   'politics',
+  'Politics',
   'trending',
+  'Trending',
+  'hotspot',
   'hotSpot',
-  'editors',
+  'HotSpot',
+  'Editors',
   'featured',
+  'Featured',
   'other',
+  'world',
+  'World',
+  'sports',
+  'Sports',
+  'tech',
+  'Tech',
+  'modern',
+  'Modern',
+  'swimming',
+  'Swimming',
+  'boxing',
+  'Boxing',
+  'basketball',
+  'Basketball',
+  'football',
+  'Football',
 ];
 
 // ------------------ GET Single Blog ------------------
@@ -136,18 +157,19 @@ export async function POST(
         return NextResponse.json({ message: 'Invalid request' }, { status: 400 });
       }
 
+      const userIdStr = String(userId);
       blog.likes = blog.likes || [];
       if (action === 'like') {
-        if (!blog.likes.includes(userId)) {
-          blog.likes.push(userId);
+        if (!blog.likes.includes(userIdStr)) {
+          blog.likes.push(userIdStr);
         }
       } else if (action === 'unlike') {
-        blog.likes = blog.likes.filter((like: string) => like !== userId);
+        blog.likes = blog.likes.filter((like: string) => like !== userIdStr);
       }
 
       await blog.save();
 
-      return NextResponse.json({ likes: blog.likes.length, liked: blog.likes.includes(userId) });
+      return NextResponse.json({ likes: blog.likes.length, liked: blog.likes.includes(userIdStr) });
     }
 
     // Handle comment
@@ -158,7 +180,7 @@ export async function POST(
 
       blog.comments = blog.comments || [];
       blog.comments.push({
-        userId,
+        userId: String(userId),
         userName,
         comment,
         createdAt: new Date().toISOString()

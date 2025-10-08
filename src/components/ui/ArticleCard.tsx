@@ -40,13 +40,13 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
 
           {showImage && (
-            <div className="flex items-center rounded-full justify-center mb-4 w-[60px] h-[60px] sm:w-[65px] sm:h-[65px] md:w-[70px] md:h-[70px]">
+            <div className="flex items-center rounded-full justify-center mb-4 w-[100px] h-[100px]">
               <Image
                 src={blog.imageUrl || '/images/article_image1.jpg'}
                 alt={blog.title || 'Article image'}
-                width={60}
-                height={60}
-                className="object-cover rounded-[1px]"
+                width={100}
+                height={100}
+                className="object-cover rounded-full"
                 priority
               />
             </div>

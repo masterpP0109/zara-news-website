@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { User } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -73,10 +74,10 @@ const HotSpot = () => {
       <div>
         <div className="flex items-center gap-[6px]">
           <h3>Today,s Hotspot</h3>
-          <div className="w-[600px] h-[9px] flex gap-[6px]">
+          <div className="w-full h-[9px] flex gap-[6px]">
             <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className="transform skew-x-3" />
             <div>
-              <div className="w-[480px] border-t border-b border-gray-400 h-[5px]"></div>
+              <div className="flex-1 border-t border-b border-gray-400 h-[5px]"></div>
             </div>
           </div>
         </div>
@@ -115,12 +116,14 @@ const HotSpot = () => {
         </div>
       </div>
 
-      <div className="flex p-2 gap-[3px] w-[600px] h-[350px]">
+      <div className="flex p-2 gap-[3px] w-full h-[350px]">
         {blogs.map((blog, index) => (
-          <div key={blog._id}
-            className={`flex flex-col justify-evenly p-4 ${index < blogs.length - 1 ? 'border-r border-gray-300' : ''}`}
+          <Link
+            key={blog._id}
+            href={`/blogs/${blog._id}`}
+            className={`flex flex-col justify-evenly p-4 cursor-pointer hover:bg-gray-50 transition-colors ${index < blogs.length - 1 ? 'border-r border-gray-300' : ''}`}
           >
-            <div className="w-50 h-30 relative inset-0  ">
+            <div className="w-50 h-30 relative inset-0">
               <Image
                 src={blog.imageUrl}
                 alt={blog.title}
@@ -130,21 +133,20 @@ const HotSpot = () => {
               />
             </div>
 
-             <p className="text-[9px]  text-gray-500">
-          {blog.category}
-        </p>
-        <h4 className="text-wrap text-[11px] ">{blog.title}</h4>
+            <p className="text-[9px] text-gray-500">
+              {blog.category}
+            </p>
+            <h4 className="text-wrap text-[11px]">{blog.title}</h4>
 
-        <div className="flex gap-2 text-[9px] text-gray-500">
-          <p className="flex gap-[1px] items-center justify-center " >   
-            <span className="w-3 h-3 rounded-full border border-gray-600 flex items-center justify-center">
-                          <User className="w-4 h-4 text-gray-600" />
-                        </span>{blog.author}</p>
-          <p>{blog.createdAt}</p>
-          <p>{blog.createdAt}</p>
-          
-        </div>
-          </div>
+            <div className="flex gap-2 text-[9px] text-gray-500">
+              <p className="flex gap-[1px] items-center justify-center">
+                <span className="w-3 h-3 rounded-full border border-gray-600 flex items-center justify-center">
+                  <User className="w-4 h-4 text-gray-600" />
+                </span>{blog.author}</p>
+              <p>{blog.createdAt}</p>
+              <p>{blog.createdAt}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

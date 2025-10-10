@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { User } from "lucide-react";
+import { User, ArrowUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import DateDisplay from "@/components/dateDisplay";
 
@@ -128,7 +129,7 @@ const Politics = () => {
 
   if (articles.length === 0) {
     return (
-      <div>
+      <div style={{ position: 'absolute', width: 960, height: 341.5199890136719, top: 877.69, left: 15, opacity: 1 }}>
         <div className="flex items-center p-4">
           <h3>Politics</h3>
           <div className="w-[600px] h-[9px] flex gap-[6px]">
@@ -159,10 +160,10 @@ const Politics = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex flex-col items-center sm:flex-row gap-4">
+      <div className="w-full px-4">
+        <div className="flex flex-col items-center sm:flex-row gap-4 w-full">
         {/* Rotating Main Image */}
-        <div className="relative h-[150px] sm:h-[160px] md:h-[170px] w-full sm:w-[200px] md:w-[220px] lg:w-[240px] overflow-hidden">
+        <Link href={`/blogs/${activeArticle._id}`} className="relative h-[150px] sm:h-[160px] md:h-[170px] w-full sm:flex-1 overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeArticle._id + "-image"}
@@ -181,10 +182,10 @@ const Politics = () => {
               />
             </motion.div>
           </AnimatePresence>
-        </div>
+        </Link>
 
         {/* Rotating Main Article */}
-        <div className="flex flex-col w-full sm:w-[150px] md:w-[160px] lg:w-[170px] gap-4">
+        <Link href={`/blogs/${activeArticle._id}`} className="flex flex-col flex-1 gap-4 cursor-pointer hover:opacity-80 transition-opacity">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeArticle._id + "-text"}
@@ -195,7 +196,7 @@ const Politics = () => {
               className="border-b pb-2"
             >
               <p className="text-xs text-gray-500">{activeArticle.category}</p>
-              <h5 className="text-xs sm:text-[0.8rem] font-bold text-gray-800">
+              <h5 className="text-xs sm:text-[0.8rem] font-bold text-gray-800" style={{ fontFamily: 'Manrope', fontWeight: 600, fontSize: '14px', lineHeight: '20px', textTransform: 'capitalize' }}>
                 {activeArticle.title}
               </h5>
               <div className="flex items-center gap-3 mt-2">
@@ -205,27 +206,29 @@ const Politics = () => {
                   </span>
                   <p className="text-xs text-gray-500">{activeArticle.author}</p>
                 </div>
-                <DateDisplay date={activeArticle.publishedAt || activeArticle.createdAt} />
+                <DateDisplay date={activeArticle.publishedAt || activeArticle.createdAt} style={{ fontFamily: 'Inter', fontWeight: 600, fontSize: '11px', lineHeight: '100%', letterSpacing: '0.52px', textTransform: 'uppercase' }} />
               </div>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-gray-600 mt-1" style={{ fontFamily: 'Inter', fontWeight: 400, fontSize: '14px', lineHeight: '1.4', letterSpacing: '0.5px' }}>
                 {activeArticle.excerpt || 'Read more about this political development...'}
               </p>
-              <button className="pt-4 w-[110px] h-[50px] rounded-lg " >
-                <p>Read More</p> <span></span>
-              </button>
+              <div className="pt-4 w-[110px] h-[50px] rounded-lg flex items-center gap-2">
+                <p>Read More</p>
+                 <ArrowUp className="w-4 h-4 text-rose-500 transform rotate-12" />
+              </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </Link>
 
         {/* 3 Independently Rotating Sub Articles */}
-        <div className="w-full sm:w-[180px] md:w-[190px] lg:w-[200px] sm:border-l border-gray-300 sm:pl-4 flex flex-col ">
+        <div className="flex-1 sm:border-l border-gray-300 sm:pl-4 flex flex-col">
           {[slot1, slot2, slot3].map((slot, index) => {
             const sub = subArticles[slot];
             if (!sub) return null; // Skip if no sub-article available
             return (
-              <div
+              <Link
                 key={index}
-                className="border-b-2 text-gray-600 pb-2 mb-2 h-[60px] overflow-hidden"
+                href={`/blogs/${sub._id}`}
+                className="border-b-2 text-gray-600 pb-2 mb-2 h-[60px] overflow-hidden cursor-pointer hover:text-gray-800 transition-colors"
               >
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -235,13 +238,13 @@ const Politics = () => {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h5 className="text-[0.7rem] font-bold text-gray-800">
+                    <h5 className="text-[0.7rem] font-bold text-gray-800" style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: '14px', lineHeight: '18px', textTransform: 'capitalize' }}>
                       {sub.title}
                     </h5>
                     <DateDisplay date={sub.publishedAt || sub.createdAt} />
                   </motion.div>
                 </AnimatePresence>
-              </div>
+              </Link>
             );
           })}
         </div>

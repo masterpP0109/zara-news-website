@@ -21,7 +21,7 @@ const page = () => {
             <Featured />
             <Trending />
           </main>
-          <MoreDetails image="/images/details1.jpg" title="traveling" />
+          <MoreDetails image="/images/details1.jpg" title="traveling" style={{ width: 956, height: 120, marginBottom: '2rem' }} />
           <Politics />
           <HotSpot />
         </div>
@@ -31,8 +31,8 @@ const page = () => {
         </aside>
       </section>
 
-      <section className="w-full max-w-[28em] sm:max-w-[32em] md:max-w-[36em] lg:max-w-[40em] h-[4.8rem]">
-        <MoreDetails image="/images/details.jpg" title="cyber" />
+      <section className="w-full max-w-[28em] sm:max-w-[32em] md:max-w-[36em] lg:max-w-[40em] h-[4.8rem] mb-12 flex justify-center">
+        <MoreDetails image="/images/details.jpg" title="cyber" style={{ width: 800, height: 100, opacity: 1 }} />
       </section>
 
       <section className="w-full max-w-[65vw] sm:max-w-[70vw] md:max-w-[75vw] lg:max-w-[80vw] flex items-start">
@@ -47,7 +47,7 @@ const page = () => {
 
 
           </main>
-           <MoreDetails image="/images/featuredArticle2.jpg" title="traveling" />
+           <MoreDetails image="/images/featuredArticle2.jpg" title="traveling" style={{ width: 980, height: 130, marginBottom: '1.5rem' }} />
              <Sports/>
         </div>
 

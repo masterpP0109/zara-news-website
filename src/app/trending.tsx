@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import DateDisplay from "@/components/dateDisplay";
 
 interface Blog {
@@ -88,7 +89,7 @@ const Trending = () => {
   const trend = trending[current];
 
   return (
-    <section className="flex justify-center">
+    <Link href={`/blogs/${trend._id}`} className="flex justify-center cursor-pointer hover:opacity-80 transition-opacity">
       <div className="w-full flex flex-col items-center">
         {/* Image */}
         <div className="relative h-[240px] sm:h-[270px] md:h-[300px] lg:h-[320px] xl:h-[340px] w-full sm:w-[380px] md:w-[400px] lg:w-[420px] xl:w-[440px] mb-3">
@@ -118,7 +119,7 @@ const Trending = () => {
               <p className="text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-500 max-w-[90%] sm:max-w-[85%] md:max-w-[80%]" >{trend.excerpt || 'Read more about this trending topic...'}</p>
         </div>
       </div>
-    </section>
+    </Link>
   );
 };
 

@@ -23,6 +23,15 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin', 'superadmin'],
     default: 'user'
   },
+  profilePicture: {
+    type: String,
+    default: ''
+  },
+  bio: {
+    type: String,
+    maxlength: 500,
+    default: ''
+  },
   createdAt: {
     type: Date,
     default: Date.now

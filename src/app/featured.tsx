@@ -33,7 +33,7 @@ const Featured = () => {
   }
 
   return (
-    <section className="flex flex-col divide-y w-full max-w-sm mx-auto lg:mx-0 space-x-4 divide-gray-300 border border-r-gray-500 mb-12 px-2 border-b-0">
+    <section className="flex flex-col divide-y w-full max-w-sm mx-auto lg:mx-0 space-x-4 divide-gray-300 border border-r-gray-500 mb-12 px-2 border-b-0 border-t-0 border-l-0 ">
       {articles.map((article) => (
         <ArticleCard
           key={article._id}

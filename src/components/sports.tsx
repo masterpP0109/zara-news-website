@@ -2,9 +2,11 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useBlogs } from '@/hooks/useBlogs';
 import { WideSectionHeader } from '@/components/ui/SectionHeader';
 import DateDisplay from '@/components/dateDisplay';
+import { ArticleCard } from '@/components/ui/ArticleCard';
 
 const Sports = () => {
   const { blogs: articles, loading, error } = useBlogs({
@@ -62,78 +64,52 @@ const Sports = () => {
         className="mb-4"
       />
 <div className="w-auto h-auto flex flex-col sm:flex-row gap-6 items-center justify-center">
-  <div
-  className="flex flex-col "
-  >
+  {sportsArticle ? (
+    <Link href={`/blogs/${sportsArticle._id}`} className="flex flex-col cursor-pointer hover:opacity-80 transition-opacity">
+      <div className="w-full sm:w-95 h-48 sm:h-60 relative">
+        <Image
+          src={sportsArticle.imageUrl || "/images/featuredArticle2.jpg"}
+          alt="Sports Article"
+          fill
+          className="object-cover rounded-[2px]"
+          priority
+        />
+      </div>
 
-
-
-  <div className="w-full sm:w-95 h-48 sm:h-60 relative">
-    <Image
-      src={sportsArticle?.imageUrl || "/images/featuredArticle2.jpg"}
-      alt="World Top News"
-      fill
-      className="object-cover rounded-[2px]"
-      priority
-    />
-  </div>
-
-  <div className="flex flex-col flex-1 justify-center">
-    {sportsArticle ? (
-      <>
+      <div className="flex flex-col flex-1 justify-center">
         <p className="text-sm text-gray-500 mb-2">{sportsArticle.category}</p>
         <h1 className="text-sm sm:text-[14px] font-bold text-gray-800 mb-4">{sportsArticle.title}</h1>
-
-
 
         <div className="flex items-center gap-4 mb-4">
           <DateDisplay date={sportsArticle.publishedAt || sportsArticle.createdAt} />
         </div>
+      </div>
+    </Link>
+  ) : (
+    <div className="flex flex-col">
+      <div className="w-full sm:w-95 h-48 sm:h-60 relative bg-gray-200 rounded-[2px]"></div>
+      <div className="flex flex-col flex-1 justify-center">
+        <div className="text-center text-gray-500">
+          <p>No featured article available</p>
+        </div>
+      </div>
+    </div>
+  )}
 
-
-      </>
-    ) : (
-      <div className="text-center text-gray-500">
-        <p>No featured article available</p>
+  <div className="grid grid-cols-2 gap-2">
+    {articles.length > 1 ? articles.slice(1, 5).map((article) => (
+      <ArticleCard
+        key={article._id || `article-${article.title}`}
+        blog={article}
+        variant="compact"
+        className="h-full"
+      />
+    )) : (
+      <div>
+        <p>No additional articles found</p>
       </div>
     )}
   </div>
-    </div>
-
-  <div className="flex flex-col gap-2" >
-           { articles.length > 1 ? articles.slice(1, 5).map((article) => (
-              <div
-              key={article._id || `article-${article.title}`}
-              className="flex gap-[5px] items-center"
-              >
-                  <div className="w-20 h-15 relative inset-0  ">
-                             <Image
-                               src={article?.imageUrl || "/images/featuredArticle2.jpg"}
-                               alt="image"
-                               fill
-                               className="object-cover rounded-[1px]"
-                               priority
-                             />
-                           </div>
-               <div
-               className="flex flex-col flex-wrap w-40"
-               >
-                  <p className="text-[10px] text-gray-500 ">{article.category}</p>
-               <h1 className="text-[12px] font-bold text-gray-800 ">{article.title}</h1>
-                <DateDisplay date={article.publishedAt || article.createdAt} />
-               </div>
-
-
-              </div>
-           )) : (
-
-             <div>
-               <p>No additional articles found</p>
-             </div>
-
-
-           ) }
-        </div>
 
 
       </div>

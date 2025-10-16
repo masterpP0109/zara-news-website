@@ -35,18 +35,18 @@ const userSchema = new mongoose.Schema({
     default: 'user'
   },
   createdAt: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: () => new Date().toISOString()
   },
   updatedAt: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: () => new Date().toISOString()
   }
 });
 
 // Update the updatedAt field before saving
 userSchema.pre('save', function(next) {
-  this.updatedAt = new Date();
+  this.updatedAt = new Date().toISOString();
   next();
 });
 

@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import DateDisplay from "@/components/dateDisplay";
 
 interface Blog {
   _id: string;
@@ -87,12 +89,12 @@ const Trending = () => {
   const trend = trending[current];
 
   return (
-    <section className="flex justify-center">
+    <Link href={`/blogs/${trend._id}`} className="flex justify-center cursor-pointer hover:opacity-80 transition-opacity">
       <div className="w-full flex flex-col items-center">
         {/* Image */}
-        <div className="relative h-[330px] w-[440px] mb-3">
+        <div className="relative h-[240px] sm:h-[270px] md:h-[300px] lg:h-[320px] xl:h-[340px] w-full sm:w-[380px] md:w-[400px] lg:w-[420px] xl:w-[440px] mb-3">
           <Image
-            src={trend.imageUrl || '/images/default-article.jpg'}
+            src={trend.imageUrl || '/images/article_image1.jpg'}
             alt={trend.title}
             fill
             className="object-cover rounded-[1px]"
@@ -101,23 +103,23 @@ const Trending = () => {
         </div>
 
         {/* Text */}
-        <p className="text-[9px] px-[1px] py-[1px] border border-gray-300 text-gray-500">
+        <p className="text-[9px] sm:text-[10px] px-[1px] py-[1px] border border-gray-300 text-gray-500">
           {trend.category}
         </p>
-        <h4 className="font-extrabold text-[28px] leading-[33.6px] tracking-normal text-center align-middle capitalize text-[#183354]">{trend.title}</h4>
+        <h4 className="font-extrabold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[28px] leading-[30px] sm:leading-[33px] md:leading-[36px] lg:leading-[40px] tracking-normal text-center align-middle capitalize text-[#183354]">{trend.title}</h4>
 
-        <div className="flex gap-2 text-xs text-gray-500">
-          <p>{trend.author}</p>
-          <span className="hidden sm:inline">•</span>
-          <p>{new Date(trend.publishedAt).toLocaleDateString()}</p>
-          <span className="hidden sm:inline">•</span>
-          <p>5 Mins</p>
-        </div>
-        <div className="flex items-center text-center justify-center" >
-             <p className="text-[12px] text-gray-500 " >{trend.excerpt || 'Read more about this trending topic...'}</p>
+        <div className="flex gap-2 text-xs sm:text-sm text-gray-500">
+           <p>{trend.author}</p>
+           <span className="hidden sm:inline">•</span>
+           <DateDisplay date={trend.publishedAt} />
+           <span className="hidden sm:inline">•</span>
+           <p>5 Mins</p>
+         </div>
+        <div className="flex items-center text-center justify-center px-2 sm:px-4" >
+              <p className="text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-500 max-w-[90%] sm:max-w-[85%] md:max-w-[80%]" >{trend.excerpt || 'Read more about this trending topic...'}</p>
         </div>
       </div>
-    </section>
+    </Link>
   );
 };
 

@@ -98,6 +98,7 @@ export const authOptions = {
     async jwt({ token, user }: { token: JWT; user?: NextAuthUser }) {
       if (user) {
         token.role = user.role;
+        token.email = user.email;
       }
       return token;
     },
@@ -105,6 +106,7 @@ export const authOptions = {
       if (token) {
         session.user.id = token.sub!;
         session.user.role = token.role as string;
+        session.user.email = token.email as string;
       }
       return session;
     }

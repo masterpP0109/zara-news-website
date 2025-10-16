@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useBlogs } from '@/hooks/useBlogs';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { ArticleCard } from '@/components/ui/ArticleCard';
-import { LoadingSkeleton } from '@/components/ui/LoadingSkeleton';
+import { SearchSkeleton } from '@/components/ui/LoadingSkeleton';
 import { InlineError } from '@/components/ui/ErrorState';
 
 export default function SearchPageContent() {
@@ -31,7 +31,7 @@ export default function SearchPageContent() {
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <SectionHeader title={`Searching for "${query}"`} className="mb-8" />
-          <LoadingSkeleton />
+          <SearchSkeleton />
         </div>
       </div>
     );
@@ -91,7 +91,7 @@ export default function SearchPageContent() {
             </div>
           </div>
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {searchResults.map((article) => (
               <ArticleCard
                 key={article._id}
@@ -106,12 +106,12 @@ export default function SearchPageContent() {
         <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="text-center">
             <h3 className="text-lg font-medium text-gray-900 mb-4">Search Again</h3>
-            <div className="max-w-md mx-auto">
+            <div className="max-w-sm sm:max-w-md mx-auto">
               <div className="flex">
                 <input
                   type="text"
                   placeholder="Enter search terms..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
+                  className="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
                   defaultValue={query}
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
@@ -124,7 +124,7 @@ export default function SearchPageContent() {
                     const input = (e.target as HTMLElement).previousElementSibling as HTMLInputElement;
                     handleSearch(input.value);
                   }}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-blue-600 text-white rounded-r-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Search
                 </button>

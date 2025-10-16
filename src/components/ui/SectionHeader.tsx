@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface SectionHeaderProps {
@@ -19,7 +20,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <div className={className}>
       <div className="w-[150px] h-[9px] flex gap-[6px]">
-        <div className={`h-[5px] w-[30px] bg-rose-500 transform skew-x-3 ${lineClassName}`}></div>
+        <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className={`transform skew-x-3 ${lineClassName}`} />
         <div>
           <div className="w-[70px] border-t-[1px] border-b-[1px] border-gray-400 h-[5px]"></div>
         </div>
@@ -45,7 +46,7 @@ export const WideSectionHeader: React.FC<SectionHeaderProps> = ({
           <h3 className={titleClassName}>{title}</h3>
         </div>
         <div className="w-full h-[9px] flex gap-[6px]">
-          <div className={`h-[5px] w-[30px] bg-rose-500 transform skew-x-3 ${lineClassName}`}></div>
+          <Image src="/images/roseLine.png" alt="rose line" width={30} height={5} className={`transform skew-x-3 ${lineClassName}`} />
           <div>
             <div className="w-full border-t border-b border-gray-400 h-[5px]"></div>
           </div>

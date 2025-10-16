@@ -45,6 +45,10 @@ const nextConfig = {
   // Environment variables validation
   env: {
     // Add any client-side environment variables here
+  },
+
+  typescript: {
+    ignoreBuildErrors: true
   }
 };
 

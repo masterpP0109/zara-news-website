@@ -23,6 +23,15 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin', 'superadmin'],
     default: 'user'
   },
+  profilePicture: {
+    type: String,
+    default: ''
+  },
+  bio: {
+    type: String,
+    maxlength: 500,
+    default: ''
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -40,7 +49,6 @@ userSchema.pre('save', function(next) {
 });
 
 // Index for better query performance
-userSchema.index({ email: 1 });
 userSchema.index({ role: 1 });
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);

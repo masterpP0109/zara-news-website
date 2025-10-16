@@ -51,7 +51,7 @@ export default function LoginForm() {
           router.push(callbackUrl);
         }
       }
-    } catch (error) {
+    } catch {
       setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);

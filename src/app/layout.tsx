@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import { Providers } from "@/components/providers";
+import Footer from "./footer";
 
 export const metadata: Metadata = {
   title: "News Portal - Latest News & Updates",
@@ -23,6 +24,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <Footer /> 
         </Providers>
       </body>
     </html>

@@ -1,17 +1,37 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useBlogs } from '@/hooks/useBlogs';
 import { WideSectionHeader } from '@/components/ui/SectionHeader';
 import { ArticleCard } from '@/components/ui/ArticleCard';
 
-const Editors = () => {
+const EditorsPicks = () => {
   const { blogs: articles, loading, error } = useBlogs({
     endpoint: '/api/blogs/category/Editors',
     published: true,
-    limit: 4
+    limit: 8 // Fetch more articles for carousel
   });
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const articlesPerPage = 4;
+
+  const nextSlide = () => {
+    if (currentIndex + articlesPerPage < articles.length) {
+      setCurrentIndex(currentIndex + articlesPerPage);
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - articlesPerPage);
+    }
+  };
+
+  const visibleArticles = articles.slice(currentIndex, currentIndex + articlesPerPage);
+  const canGoNext = currentIndex + articlesPerPage < articles.length;
+  const canGoPrev = currentIndex > 0;
 
   if (loading) {
     return (
@@ -119,34 +139,42 @@ const Editors = () => {
           <button
             type="button"
             aria-label="Previous"
-            className="flex items-center justify-center w-8 h-8 rounded-md border border-slate-300 bg-white shadow-sm hover:bg-slate-100 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-300 transition-transform"
+            onClick={prevSlide}
+            disabled={!canGoPrev}
+            className="flex items-center justify-center w-8 h-8 rounded-md border border-slate-300 bg-white shadow-sm hover:bg-slate-100 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-300 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ChevronLeft size={16} />
           </button>
           <button
             type="button"
             aria-label="Next"
-            className="flex items-center justify-center w-8 h-8 rounded-md border border-slate-300 bg-white shadow-sm hover:bg-slate-100 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-300 transition-transform"
+            onClick={nextSlide}
+            disabled={!canGoNext}
+            className="flex items-center justify-center w-8 h-8 rounded-md border border-slate-300 bg-white shadow-sm hover:bg-slate-100 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-300 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ChevronRight size={16} />
           </button>
         </div>
       </div>
 
-      <WideSectionHeader title="" className="mb-4" />
-
-      <div className="flex gap-3 w-full h-[350px] divide-x divide-gray-300">
-        {articles.map((article) => (
+      <motion.div
+        key={currentIndex}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col gap-6 sm:gap-3 md:gap-3 w-full h-auto lg:h-[230px] lg:flex-row"
+      >
+        {visibleArticles.map((article, index) => (
           <ArticleCard
             key={article._id}
             blog={article}
             variant="compact"
-            className="flex-1 p-4"
+            className={`p-4 border-b border-gray-300 lg:flex-1 ${index < visibleArticles.length - 1 ? 'lg:border-b-0 lg:border-r lg:border-gray-300' : 'lg:border-b-0'}`}
           />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
 
-export default Editors;
+export default EditorsPicks; 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Blog, BlogResponse } from '@/types/blog';
 
 interface UseBlogsOptions {
@@ -30,7 +30,7 @@ export const useBlogs = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -57,11 +57,11 @@ export const useBlogs = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [endpoint, limit, published, category, search]);
 
   useEffect(() => {
     fetchBlogs();
-  }, [endpoint, limit, published, category, search]);
+  }, [fetchBlogs]);
 
   return {
     blogs,

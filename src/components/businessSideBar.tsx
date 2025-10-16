@@ -42,7 +42,7 @@ const BusinessSideBar = () => {
 
         <div className=" w-60 h-60 relative" >
             <Image
-                         src="/images/8471e75fe110f1871ae8ab7eafbf883806222f1b (1).jpg"
+                         src="/images/travelTime.jpg"
                          alt="logo"
                       fill
                      className="object-cover rounded-[1px]"
